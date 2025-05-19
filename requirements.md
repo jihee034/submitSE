@@ -2,9 +2,11 @@
 
 ### code : 41703
 ### GitHub 주소 : https://github.com/jihee034/submitSE
+---
+### requirement list
 
 | No. | Requirement | Use Case(s) |
-| — | — | — |
+| --- | --- | --- |
 | 1 | 회원은 ID, 비밀번호, 전화번호을 입력한다. | 회원가입 |
 | 2 | 회원, 관리자는 ID, 비밀번호로 로그인을 한다.
 관리자일 경우 ID(admin), 비밀번호(admin) | 로그인 |

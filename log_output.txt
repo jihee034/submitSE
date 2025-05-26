@@ -1,0 +1,7 @@
+[jiheeha] Tue May 20 07:02:42 2025 +0900 Analysis class diagram 작성 b68b0db
+[jiheeha] Tue May 20 05:44:03 2025 +0900 communication diagram 작성 3a8a01d
+[jiheeha] Tue May 20 04:40:25 2025 +0900 description 수정 1283bed
+[jiheeha] Tue May 20 02:31:37 2025 +0900 requirementlist 수정 1d1ff8d
+[jiheeha] Tue May 20 02:30:55 2025 +0900 requirementlist 수정 5a4e909
+[jiheeha] Tue May 20 02:27:49 2025 +0900 description + requirementlist 318591a
+[jiheeha] Tue May 20 01:49:28 2025 +0900 use case diagram 그리기 aae2a3b

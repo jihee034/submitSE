@@ -1,14 +1,29 @@
 #include "LogoutUI.h"
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : LogoutUI::LogoutUI()
+   ±â´É     : ·Î±×¾Æ¿ô ±â´ÉÀ» ´ã´çÇÏ´Â Control Å¬·¡½º Æ÷ÀÎÅÍ¸¦ ÃÊ±âÈ­ÇÔ
+   Àü´Ş ÀÎÀÚ : logout - ·Î±×¾Æ¿ô Á¦¾î Å¬·¡½º Æ÷ÀÎÅÍ
+   ¹İÈ¯°ª    : ¾øÀ½
+*/
 LogoutUI::LogoutUI(Logout* logout) {
     this->logout = logout;
 }
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : LogoutUI::logoutService()
+   ±â´É     : ÇöÀç ·Î±×ÀÎµÈ È¸¿øÀ» ·Î±×¾Æ¿ôÇÏ°í °á°ú¸¦ Ãâ·ÂÇÔ
+   Àü´Ş ÀÎÀÚ : out - Ãâ·Â ½ºÆ®¸²
+   ¹İÈ¯°ª    : ¾øÀ½
+*/
 void LogoutUI::logoutService(ofstream& out) {
     Member* member = logout->systemEnd();
-    out << "2.2. ë¡œê·¸ì•„ì›ƒ\n";
+    out << "2.2. ·Î±×¾Æ¿ô\n";
     if (member != nullptr)
         out << "> " << member->getId() << "\n";
     else
-        out << "> ë¡œê·¸ì•„ì›ƒ ì‹¤íŒ¨ (ë¡œê·¸ì¸ ì•ˆ ë¨)\n";
+        out << "> ·Î±×¾Æ¿ô ½ÇÆĞ (·Î±×ÀÎ ¾È µÊ)\n";
+    out << "\n";
 }

@@ -1,11 +1,25 @@
 #include "SignUpUI.h"
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : SignUpUI::SignUpUI()
+   ±â´É     : È¸¿ø°¡ÀÔ ±â´ÉÀ» ´ã´çÇÏ´Â Control Å¬·¡½º Æ÷ÀÎÅÍ¸¦ ÃÊ±âÈ­ÇÔ
+   Àü´Ş ÀÎÀÚ : signUp - È¸¿ø°¡ÀÔ Á¦¾î Å¬·¡½º Æ÷ÀÎÅÍ
+   ¹İÈ¯°ª    : ¾øÀ½
+*/
 SignUpUI::SignUpUI(SignUp* signUp) {
     this->signUp = signUp;
 }
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : SignUpUI::startInterface()
+   ±â´É     : »ç¿ëÀÚ·ÎºÎÅÍ ID, ºñ¹Ğ¹øÈ£, ÀüÈ­¹øÈ£¸¦ ÀÔ·Â¹Ş¾Æ È¸¿ø°¡ÀÔÀ» ¼öÇàÇÏ°í °á°ú¸¦ Ãâ·ÂÇÔ
+   Àü´Ş ÀÎÀÚ : id - È¸¿ø ID, pw - ºñ¹Ğ¹øÈ£, phone - ÀüÈ­¹øÈ£, out - Ãâ·Â ½ºÆ®¸²
+   ¹İÈ¯°ª    : ¾øÀ½
+*/
 void SignUpUI::startInterface(string id, string pw, string phone, ofstream& out) {
     signUp->addMember(id, pw, phone);
-    out << "1.1. íšŒì›ê°€ì…\n";
-    out << "> " << id << " " << pw << " " << phone << "\n";
+    out << "1.1. È¸¿ø°¡ÀÔ\n";
+    out << "> " << id << " " << pw << " " << phone << "\n\n";
 }

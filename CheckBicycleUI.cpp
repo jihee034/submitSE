@@ -1,15 +1,31 @@
 #include "CheckBicycleUI.h"
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : CheckBicycleUI::CheckBicycleUI()
+   ±â´É     : ÀÚÀü°Å Á¶È¸ ±â´ÉÀ» ´ã´çÇÏ´Â Control Å¬·¡½º Æ÷ÀÎÅÍ¸¦ ÃÊ±âÈ­ÇÔ
+   Àü´Ş ÀÎÀÚ : checkBicycle - ÀÚÀü°Å Á¶È¸ Á¦¾î Å¬·¡½º Æ÷ÀÎÅÍ
+   ¹İÈ¯°ª    : ¾øÀ½
+*/
 CheckBicycleUI::CheckBicycleUI(CheckBicycle* checkBicycle) {
     this->checkBicycle = checkBicycle;
 }
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : CheckBicycleUI::checkBike()
+   ±â´É     : ÇöÀç ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ´ë¿©ÇÑ ÀÚÀü°Å ¸®½ºÆ®¸¦ Ãâ·ÂÇÔ
+   Àü´Ş ÀÎÀÚ : out - Ãâ·Â ½ºÆ®¸²
+   ¹İÈ¯°ª    : ¾øÀ½
+*/
 void CheckBicycleUI::checkBike(ofstream& out) {
-    out << "5.1. ëŒ€ì—¬ ìì „ê±° ì¡°íšŒ\n";
+    out << "5.1. ÀÚÀü°Å ´ë¿© ¸®½ºÆ®\n";
     Member* member = checkBicycle->getMemberList()->getNewMember();
     if (member != nullptr) {
         checkBicycle->BikeList(member->getId(), out);
-    } else {
-        out << "> ì¡°íšŒ ì‹¤íŒ¨: ë¡œê·¸ì¸ í•„ìš”\n";
     }
+    else {
+        out << "> Á¶È¸ ½ÇÆĞ: ·Î±×ÀÎ ÇÊ¿ä\n";
+    }
+    out << "\n";
 }

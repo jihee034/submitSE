@@ -9,8 +9,15 @@
 #include "BikeRegisterUI.h"
 #include "RentBikeUI.h"
 #include "CheckBicycleUI.h"
+#include "SignUp.h"
+#include "Login.h"
+#include "Logout.h"
+#include "BikeRegister.h"
+#include "RentBike.h"
+#include "CheckBicycle.h"
 
 using namespace std;
+
 
 int main() {
     ifstream inFile("input.txt");
@@ -19,67 +26,79 @@ int main() {
     MemberList* memberList = new MemberList();
     BicycleList* bicycleList = new BicycleList();
 
-    while (!inFile.eof()) {
-        int menuLevel1, menuLevel2;
-        inFile >> menuLevel1 >> menuLevel2;
+    // admin °èÁ¤ »çÀü µî·Ï
+    memberList->addMember(new Member("admin", "admin", "01000000000"));
 
-        if (menuLevel1 == 1 && menuLevel2 == 1) {
-            // íšŒì›ê°€ìž…
-            string id, pw, phone;
-            inFile >> id >> pw >> phone;
+    int menu1, menu2;
 
-            SignUp* signUp = new SignUp(memberList);
-            SignUpUI* signUpUI = new SignUpUI(signUp);
-            signUpUI->startInterface(id, pw, phone, outFile);
-        }
-        else if (menuLevel1 == 2 && menuLevel2 == 1) {
-            // ë¡œê·¸ì¸
-            string id, pw;
-            inFile >> id >> pw;
-
-            Login* login = new Login(memberList);
-            LoginUI* loginUI = new LoginUI(login);
-            loginUI->login(id, pw, outFile);
-        }
-        else if (menuLevel1 == 3 && menuLevel2 == 1) {
-            // ìžì „ê±° ë“±ë¡
-            string idBike, nameBike;
-            inFile >> idBike >> nameBike;
-
-            BikeRegister* bikeRegister = new BikeRegister(bicycleList);
-            BikeRegisterUI* bikeRegisterUI = new BikeRegisterUI(bikeRegister);
-            bikeRegisterUI->inputBikeInfo(idBike, nameBike, outFile);
-        }
-        else if (menuLevel1 == 4 && menuLevel2 == 1) {
-            // ìžì „ê±° ëŒ€ì—¬
-            string idBike, nameBike;
-            inFile >> idBike >> nameBike;
-
-            RentBike* rentBike = new RentBike(memberList, bicycleList);
-            RentBikeUI* rentBikeUI = new RentBikeUI(rentBike);
-            rentBikeUI->rentBicycle(idBike, nameBike, outFile);
-        }
-        else if (menuLevel1 == 5 && menuLevel2 == 1) {
-            // ëŒ€ì—¬ ìžì „ê±° ì¡°íšŒ
-            CheckBicycle* checkBicycle = new CheckBicycle(memberList, bicycleList);
-            CheckBicycleUI* checkBicycleUI = new CheckBicycleUI(checkBicycle);
-            checkBicycleUI->checkBike(outFile);
-        }
-        else if (menuLevel1 == 2 && menuLevel2 == 2) {
-            // ë¡œê·¸ì•„ì›ƒ
-            Logout* logout = new Logout(memberList);
-            LogoutUI* logoutUI = new LogoutUI(logout);
-            logoutUI->logoutService(outFile);
-        }
-        else if (menuLevel1 == 6 && menuLevel2 == 1) {
-            // ì¢…ë£Œ
-            outFile << "6.1. ì¢…ë£Œ\n";
+    while (inFile >> menu1 >> menu2) {
+        switch (menu1) {
+        case 1: // È¸¿ø°¡ÀÔ
+            if (menu2 == 1) {
+                string id, pw, phone;
+                inFile >> id >> pw >> phone;
+                SignUp* signUp = new SignUp(memberList);
+                SignUpUI* signUpUI = new SignUpUI(signUp);
+                signUpUI->startInterface(id, pw, phone, outFile);
+            }
             break;
+
+        case 2: // ·Î±×ÀÎ / ·Î±×¾Æ¿ô
+            if (menu2 == 1) {
+                string id, pw;
+                inFile >> id >> pw;
+                Login* login = new Login(memberList);
+                LoginUI* loginUI = new LoginUI(login);
+                loginUI->login(id, pw, outFile);
+            }
+            else if (menu2 == 2) {
+                Logout* logout = new Logout(memberList);
+                LogoutUI* logoutUI = new LogoutUI(logout);
+                logoutUI->logoutService(outFile);
+            }
+            break;
+
+        case 3: // ÀÚÀü°Å µî·Ï
+            if (menu2 == 1) {
+                string idBike, model;
+                inFile >> idBike >> model;
+                BikeRegister* bikeRegister = new BikeRegister(bicycleList);
+                BikeRegisterUI* bikeRegisterUI = new BikeRegisterUI(bikeRegister);
+                bikeRegisterUI->inputBikeInfo(idBike, model, outFile);
+            }
+            break;
+
+        case 4: // ÀÚÀü°Å ´ë¿©
+            if (menu2 == 1) {
+                string idBike, model;
+                inFile >> idBike;
+
+                if (inFile.peek() == '\n' || inFile.eof()) model = "";
+                else inFile >> model;
+
+                RentBike* rentBike = new RentBike(memberList, bicycleList);
+                RentBikeUI* rentBikeUI = new RentBikeUI(rentBike);
+                rentBikeUI->rentBicycle(idBike, model, outFile);
+            }
+            break;
+
+        case 5: // ´ë¿© ÀÚÀü°Å Á¶È¸
+            if (menu2 == 1) {
+                CheckBicycle* checkBicycle = new CheckBicycle(memberList, bicycleList);
+                CheckBicycleUI* checkBicycleUI = new CheckBicycleUI(checkBicycle);
+                checkBicycleUI->checkBike(outFile);
+            }
+            break;
+
+        case 6: // Á¾·á
+            if (menu2 == 1) {
+                outFile << "6.1. Á¾·á";
+                break;
+            }
         }
     }
 
     inFile.close();
     outFile.close();
-
     return 0;
 }

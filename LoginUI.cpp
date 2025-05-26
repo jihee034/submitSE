@@ -1,14 +1,29 @@
 #include "LoginUI.h"
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : LoginUI::LoginUI()
+   ±â´É     : ·Î±×ÀÎ ±â´ÉÀ» ´ã´çÇÏ´Â Control Å¬·¡½º Æ÷ÀÎÅÍ¸¦ ÃÊ±âÈ­ÇÔ
+   Àü´Ş ÀÎÀÚ : loginControl - ·Î±×ÀÎ Á¦¾î Å¬·¡½º Æ÷ÀÎÅÍ
+   ¹İÈ¯°ª    : ¾øÀ½
+*/
 LoginUI::LoginUI(Login* loginControl) {
     this->loginControl = loginControl;
 }
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : LoginUI::login()
+   ±â´É     : »ç¿ëÀÚ ID, ºñ¹Ğ¹øÈ£¸¦ ÀÔ·Â¹Ş¾Æ ·Î±×ÀÎ Ã³¸® °á°ú¸¦ Ãâ·ÂÇÔ
+   Àü´Ş ÀÎÀÚ : id - »ç¿ëÀÚ ID, pw - ºñ¹Ğ¹øÈ£, out - Ãâ·Â ½ºÆ®¸²
+   ¹İÈ¯°ª    : ¾øÀ½
+*/
 void LoginUI::login(string id, string pw, ofstream& out) {
     bool success = loginControl->login(id, pw);
-    out << "2.1. ë¡œê·¸ì¸\n";
+    out << "2.1. ·Î±×ÀÎ\n";
     if (success)
         out << "> " << id << " " << pw << "\n";
     else
-        out << "> ë¡œê·¸ì¸ ì‹¤íŒ¨\n";
+        out << "> ·Î±×ÀÎ ½ÇÆĞ\n";
+    out << "\n";
 }

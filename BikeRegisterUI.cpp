@@ -1,11 +1,25 @@
 #include "BikeRegisterUI.h"
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : BikeRegisterUI::BikeRegisterUI()
+   ±â´É     : ÀÚÀü°Å µî·Ï ±â´ÉÀ» ´ã´çÇÏ´Â Control Å¬·¡½º Æ÷ÀÎÅÍ¸¦ ÃÊ±âÈ­ÇÔ
+   Àü´Þ ÀÎÀÚ : bikeRegister - ÀÚÀü°Å µî·Ï Á¦¾î Å¬·¡½º Æ÷ÀÎÅÍ
+   ¹ÝÈ¯°ª    : ¾øÀ½
+*/
 BikeRegisterUI::BikeRegisterUI(BikeRegister* bikeRegister) {
     this->bikeRegister = bikeRegister;
 }
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : BikeRegisterUI::inputBikeInfo()
+   ±â´É     : »ç¿ëÀÚ·ÎºÎÅÍ ÀÔ·Â¹ÞÀº ÀÚÀü°Å Á¤º¸¸¦ µî·ÏÇÏ°í °á°ú¸¦ Ãâ·ÂÇÔ
+   Àü´Þ ÀÎÀÚ : idBike - ÀÚÀü°Å ID, nameBike - ÀÚÀü°Å ¸ðµ¨¸í, out - Ãâ·Â ½ºÆ®¸²
+   ¹ÝÈ¯°ª    : ¾øÀ½
+*/
 void BikeRegisterUI::inputBikeInfo(string idBike, string nameBike, ofstream& out) {
     bikeRegister->addBike(idBike, nameBike);
-    out << "3.1. ìžì „ê±° ì •ë³´ ë“±ë¡\n";
-    out << "> " << idBike << " " << nameBike << "\n";
+    out << "3.1. ÀÚÀü°Å µî·Ï\n";
+    out << "> " << idBike << " " << nameBike << "\n\n";
 }

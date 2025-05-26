@@ -1,11 +1,35 @@
 #include "RentBikeUI.h"
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : RentBikeUI::RentBikeUI()
+   ±â´É     : ÀÚÀü°Å ´ë¿© ±â´ÉÀ» ´ã´çÇÏ´Â Control Å¬·¡½º Æ÷ÀÎÅÍ¸¦ ÃÊ±âÈ­ÇÔ
+   Àü´Þ ÀÎÀÚ : rentBike - ÀÚÀü°Å ´ë¿© Á¦¾î Å¬·¡½º Æ÷ÀÎÅÍ
+   ¹ÝÈ¯°ª    : ¾øÀ½
+*/
 RentBikeUI::RentBikeUI(RentBike* rentBike) {
     this->rentBike = rentBike;
 }
 
+
+/*
+   ÇÔ¼ö ÀÌ¸§ : RentBikeUI::rentBicycle()
+   ±â´É     : ÀÔ·Â¹ÞÀº ÀÚÀü°Å ID ¹× ¸ðµ¨¸íÀ» ±â¹ÝÀ¸·Î ´ë¿© Ã³¸®ÇÏ°í °á°ú¸¦ Ãâ·ÂÇÔ
+   Àü´Þ ÀÎÀÚ : idBike - ÀÚÀü°Å ID, nameBike - ÀÚÀü°Å ¸ðµ¨¸í, out - Ãâ·Â ½ºÆ®¸²
+   ¹ÝÈ¯°ª    : ¾øÀ½
+*/
 void RentBikeUI::rentBicycle(string idBike, string nameBike, ofstream& out) {
     rentBike->possBikeList(idBike, nameBike);
-    out << "4.1. ìžì „ê±° ëŒ€ì—¬\n";
-    out << "> " << idBike << " " << nameBike << "\n";
+
+    out << "4.1. ÀÚÀü°Å ´ë¿©\n";
+
+    for (Bicycle* bike : rentBike->getBicycleList()->getPossBikeList()) {
+        if (bike->getIdBike() == idBike) {
+            out << "> " << bike->getIdBike() << " " << bike->getModelName() << "\n\n";
+            return;
+        }
+    }
+
+    // fallback
+    out << "> " << idBike << "\n\n";
 }
